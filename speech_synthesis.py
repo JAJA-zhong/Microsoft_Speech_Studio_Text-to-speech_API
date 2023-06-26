@@ -3,9 +3,8 @@ import azure.cognitiveservices.speech as speechsdk
 
 
 class SPEECH:
-    def __init__(self, text):
+    def __init__(self):
         # 需要转语音的文本文字
-        self.text = text
         # 设置音频保存本地地址
         self.output_file = "D:\\output.wav"
         # 从环境变量中获取订阅密钥和区域信息
@@ -25,7 +24,7 @@ class SPEECH:
         audio_config = speechsdk.audio.AudioOutputConfig(filename=self.output_file)
         return audio_config
 
-    def run(self, audio_config):
+    def run(self, text, audio_config):
 
         # 创建语音合成器
         speech_synthesizer = speechsdk.SpeechSynthesizer(speech_config=self.speech_config, audio_config=audio_config)
@@ -45,13 +44,14 @@ class SPEECH:
                     print("Did you set the speech resource key and region values?")
 
 
-while True:
-    # 从控制台获取要转换为语音的文本
-    print("Enter some text that you want to speak >")
-    text = input()
-    # text = "hello 大家好，这里是人工智能AI机器人在说话"
-    my_speech = SPEECH(text)
-    # 输出语音播放
-    my_speech.run(my_speech.speak_txt())
-    # 保存到本地
-    my_speech.run(my_speech.down_audio())
+if __name__ == "__main__":
+    my_speech = SPEECH()
+    while True:
+        # 从控制台获取要转换为语音的文本
+        print("Enter some text that you want to speak >")
+        text = input()
+        # text = "hello 大家好，这里是人工智能AI机器人在说话"
+        # 输出语音播放
+        my_speech.run(text, my_speech.speak_txt())
+        # 保存到本地
+        my_speech.run(text, my_speech.down_audio())
