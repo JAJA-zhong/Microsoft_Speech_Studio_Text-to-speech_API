@@ -6,7 +6,7 @@ class SPEECH:
     def __init__(self):
         # 需要转语音的文本文字
         # 设置音频保存本地地址
-        self.output_file = "D:\\output.wav"
+        self.output_file = "D:\\PycharmProjects\\speech_synthesis\\output.wav"
         # 从环境变量中获取订阅密钥和区域信息
         self.speech_config = speechsdk.SpeechConfig(subscription=os.environ.get('SPEECH_KEY'),
                                                     region=os.environ.get('SPEECH_REGION'))
